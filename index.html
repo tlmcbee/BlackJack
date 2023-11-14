@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlackJack</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer href="js/main.js"></script>
 </head>
-<body>
+<body class="flex-ctr">
     <header>
         <h1>BLACKJACK</h1>
-        <button>RESET</button>
+        <button id="reset">RESET</button>
     </header>
     <main>
         <div></div>
@@ -18,13 +20,13 @@
         <div></div>
     </main>
     <footer>
-        <button>HIT</button>
-        <button>STAY</button>
-        <button>$1</button>
-        <button>$5</button>
-        <div>Wallet</div>
-        <div>Pot</div>
-        <button>DEAL</button>
+        <button id="hit">HIT</button>
+        <button id="stay">STAY</button>
+        <button id="bet-1">$1</button>
+        <button id="bet-5">$5</button>
+        <div class="flex-ctr"></div>Wallet</div>
+        <div class="flex-ctr">Pot</div>
+        <button id="deal">DEAL</button>
     </footer>
 </body>
 </html>

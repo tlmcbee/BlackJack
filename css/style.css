@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+.flex-ctr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    height: 100vh;
+    background-color: #1A7803;
+    flex-direction: column;
+}
+
+header {
+    width: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header>button {
+    background-color: white;
+    color: darkgray;
+    font-size: 2vmin;
+    border: 0.1vmin solid black;
+    border-radius: 2vmin;
+    visibility: hidden;
+}
+
+main {
+    height: 70vh;
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+main>div {
+    background-color: white;
+    color: black;
+}
+
+footer {
+    width: 100vmin;
+    height: 20vmin;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+footer>button{
+    height: 10vmin;
+    width: 10vmin;
+}
+
+footer>div{
+    height: 10vmin;
+    width: 10vmin;
+    background-color: darkgray;
+    font-size: 3vmin;
+    border: 0.5vmin solid #1A7803;
+}
+
+
+#hit {
+    background-color: #1A7803;
+    font-size: 3vmin;
+    border: 0.3vmin solid white;
+}
+
+#stay {
+    background-color: #F60303;
+    font-size: 3vmin;
+    border: 0.3vmin solid white;
+}
+
+#bet-1 {
+    border: 0.5vmin dashed white;
+    border-radius: 50%;
+    font-size: 3vmin;
+    background-color: #1A7803;
+}
+
+#bet-5 {
+    border: 0.5vmin dashed white;
+    border-radius: 50%;
+    font-size: 3vmin;
+    background-color: #F60303;
+}
+
+#deal {
+    background-color: darkgray;
+    font-size: 3vmin;
+    border: 0.5vmin solid #1A7803;
+}
+
+footer>button:hover {
+    background-color: black;
+    color: darkgray;
+    border: 0.1vmin solid black;
+}
+
