@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlackJack</title>
-    <link rel="stylesheet" href="css/style.css">\  <link href="css/card-library/css/cardstarter.css" rel="stylesheet" type="text/css" />
+    <link href="css/card-deck-css/css/cardstarter.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/style.css">
     <script defer src="js/main.js"></script>
 </head>
 <body class="flex-ctr">
@@ -13,9 +14,10 @@
         <button id="reset">RESET</button>
     </header>
     <main>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div id="dealer-cards"></div>
+        <h2 id="outcome">Outcome</h2><br>
+        <h2 id="result">Result</h2>
+        <div id="player-cards"></div>
     </main>
     <footer>
         <button id="hit">HIT</button>

@@ -7,51 +7,93 @@ const originalDeck = buildOriginalDeck();
 let shuffledDeck;
 let pot;
 let wallet;
-let playerHand = [];
-let dealerHand = [];
-let nextCard;
+let playerHand;
+let dealerHand;
+let winner;
 
 
 /*----- cached elements  -----*/
 const walletEl = document.getElementById('wallet')
-const hitBtn = document.getElementById('hit')
-const stayBtn = document.getElementById('stay')
 const bet1Dollar  = document.getElementById('bet-1')
 const bet5Dollars = document.getElementById('bet-5')
+const dealBtn = document.getElementById('deal').addEventListener('click', firstDeal)
+const hitBtn = document.getElementById('hit').addEventListener('click', playerHit)
+const stayBtn = document.getElementById('stay').addEventListener('click', playerStay)
+const playerCards = document.getElementById('player-cards')
+const dealerCards = document.getElementById('dealer-cards')
+const outcomeEl = document.getElementById('outcome')
+const resultEl = document.getElementById('result')
 
 /*----- event listeners -----*/
-document.getElementById('deal').addEventListener('click', dealNextCard)
+
 
 
 /*----- functions -----*/
 init();
 
 function init() {
-wallet = 20;g
-walletEl.innerText = '$'+ wallet;
-pot = null;
-renderNewShuffledDeck();
+  playerHand = [];
+  dealerHand = [];
+  wallet = 20;
+  walletEl.innerText = '$'+ wallet;
+  pot = null;
+  winner = null;
+  renderNewShuffledDeck();
+  render();
 }
 
 function render() {
-
-
+  renderHand(playerHand, playerCards)
+  renderHand(dealerHand, dealerCards)
 }
-
-function playerHit() {
-  hitBtn.addEventListener('click', dealNextCard)
-  playerHand.push(nextCard)
-  }
-
 
 function renderMessage() {
 
 }
- 
-function dealNextCard() {
-  const nextCardIdx = shuffledDeck[0]
-  nextCard = shuffledDeck.splice(nextCardIdx,1)
-  return nextCard;
+
+function firstDeal() {
+  for(let i = 0; i < 2; i++) {
+    dealerHand.push(shuffledDeck.pop())
+    playerHand.push(shuffledDeck.pop())
+  }
+  render();
+}
+
+function scoreHand(hand) {
+  let score = 0;
+  hand.forEach(card => {
+    score += card.value
+  })
+  return score;
+}
+
+function playerStay() {
+  while(scoreHand(dealerHand) < 17) {
+    dealerHand.push(shuffledDeck.pop());
+    if(scoreHand(dealerHand) >= 21) return scoreHand(dealerHand);
+  };
+  render();
+}
+
+function playerHit() {
+  playerHand.push(shuffledDeck.pop())
+  render()
+}
+
+
+
+function renderHand(hand, container) {
+  container.innerHTML = '';
+  // Let's build the cards as a string of HTML
+  let cardsHtml = '';
+  hand.forEach(function(card) {
+    cardsHtml += `<div class="card ${card.face}"></div>`;
+  });
+  // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
+  // const cardsHtml = deck.reduce(function(html, card) {
+    //   return html + `<div class="card ${card.face}"></div>`;
+    // }, '');
+    container.innerHTML = cardsHtml;
 }
 
 function renderNewShuffledDeck() {
@@ -69,14 +111,14 @@ function getNewShuffledDeck() {
 }
 
 function buildOriginalDeck() {
-    const deck = [];
-    suits.forEach(function(suit) {
-        ranks.forEach(function(rank) {
-            deck.push({
-              face: `${suit}${rank}`,
-              value: Number(rank) || (rank === 'A' ? 11 : 10)
-            });
-          });
-        });
-    return deck;
+  const deck = [];
+  suits.forEach(function(suit) {
+    ranks.forEach(function(rank) {
+      deck.push({
+        face: `${suit}${rank}`,
+        value: Number(rank) || (rank === 'A' ? 11 : 10)
+      });
+    });
+   });
+  return deck;
 }

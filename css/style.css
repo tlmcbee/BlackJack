@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-   
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .flex-ctr {
@@ -37,21 +37,32 @@ header>button {
 
 main {
     height: 70vh;
+    width: 70vw;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    margin: 5px;
 }
 
 main>div {
     background-color: #104E00;
     color: black;
-    height: 50vmin;
-    width: 30vmin;
+    height: 70vmin;
+    width: 40vmin;
     border: solid 5px black;
     border-radius: 2vmin;
+}
 
+#outcome {
+    font-size: 20px;
+    visibility: hidden;
+}
+
+#result {
+    font-size: 20px;
+    visibility: hidden;
 }
 
 footer {
@@ -120,4 +131,7 @@ footer>button:hover {
     transform: scale(0.9);
     transition: transform 150ms ease-in;
 }
-
+ #player-cards {
+    display: flex;
+    flex-direction: row;
+ }
