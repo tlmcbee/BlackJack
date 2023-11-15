@@ -7,20 +7,28 @@ const originalDeck = buildOriginalDeck();
 let shuffledDeck;
 let pot;
 let wallet;
+let playerHand = [];
+let dealerHand = [];
+let nextCard;
 
 
 /*----- cached elements  -----*/
 const walletEl = document.getElementById('wallet')
+const hitBtn = document.getElementById('hit')
+const stayBtn = document.getElementById('stay')
+const bet1Dollar  = document.getElementById('bet-1')
+const bet5Dollars = document.getElementById('bet-5')
 
 /*----- event listeners -----*/
+document.getElementById('deal').addEventListener('click', dealNextCard)
 
 
 /*----- functions -----*/
 init();
 
 function init() {
-wallet = 20;
-walletEl.innerText = wallet;
+wallet = 20;g
+walletEl.innerText = '$'+ wallet;
 pot = null;
 renderNewShuffledDeck();
 }
@@ -30,21 +38,27 @@ function render() {
 
 }
 
+function playerHit() {
+  hitBtn.addEventListener('click', dealNextCard)
+  playerHand.push(nextCard)
+  }
+
+
 function renderMessage() {
 
 }
  
-function dealCards() {
-
+function dealNextCard() {
+  const nextCardIdx = shuffledDeck[0]
+  nextCard = shuffledDeck.splice(nextCardIdx,1)
+  return nextCard;
 }
 
 function renderNewShuffledDeck() {
-  // Create a copy of the originalDeck (leave originalDeck untouched!)
   shuffledDeck = getNewShuffledDeck();
 }
 
 function getNewShuffledDeck() {
-  // Create a copy of the originalDeck (leave originalDeck untouched!)
   const tempDeck = [...originalDeck];
   const newShuffledDeck = [];
   while (tempDeck.length) {

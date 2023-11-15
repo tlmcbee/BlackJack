@@ -109,13 +109,15 @@ footer>div{
 
 #deal {
     background-color: darkgray;
-    font-size: 3vmin;
+    font-size: 2vmin;
     border: 0.5vmin solid #1A7803;
 }
 
 footer>button:hover {
     background-color: black;
-    color: darkgray;
+    color: white;
     border: 0.1vmin solid black;
+    transform: scale(0.9);
+    transition: transform 150ms ease-in;
 }
 
