@@ -11,7 +11,6 @@ let playerHand;
 let dealerHand;
 let winner;
 
-
 /*----- cached elements  -----*/
 const walletEl = document.getElementById('wallet')
 const potEl = document.getElementById('pot')
@@ -34,7 +33,6 @@ bet1Btn.addEventListener('click', bet1)
 bet5Btn.addEventListener('click', bet5)
 newHandBtn.addEventListener('click', newHand)
 resetBtn.addEventListener('click', init)
-
 
 /*----- functions -----*/
 init();
@@ -63,7 +61,6 @@ function render() {
 function renderMessage() {
   outcomeEl.style.visibility = "visible"
 }
-
 
 function bet5() {
   pot += 10;
@@ -100,7 +97,6 @@ function firstDeal() {
   render();
 }
 
-
 function renderControls() {
   newHandBtn.style.visibility = winner ? 'visible' : 'hidden'
   if(wallet === 0) {
@@ -110,7 +106,6 @@ function renderControls() {
  } else {
   resetBtn.style.visibility = 'hidden'
  }
-
 
 }
 function newHand() {
@@ -186,16 +181,11 @@ function getWinner() {
 
 function renderHand(hand, container) {
   container.innerHTML = '';
-  // Let's build the cards as a string of HTML
   let cardsHtml = '';
   hand.forEach(function(card) {
     cardsHtml += `<div class="card ${card.face}"></div>`;
   });
-  // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
-  // const cardsHtml = deck.reduce(function(html, card) {
-    //   return html + `<div class="card ${card.face}"></div>`;
-    // }, '');
-    container.innerHTML = cardsHtml;
+HTML = cardsHtml;
 }
 
 function renderNewShuffledDeck() {
