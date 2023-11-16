@@ -14,18 +14,20 @@ let winner;
 
 /*----- cached elements  -----*/
 const walletEl = document.getElementById('wallet')
+const potEl = document.getElementById('pot')
 const playerCards = document.getElementById('player-cards')
 const dealerCards = document.getElementById('dealer-cards')
 const outcomeEl = document.getElementById('outcome')
 const resetBtn = document.getElementById('reset')
-
+const newHandBtn = document.getElementById('new-hand')
 /*----- event listeners -----*/
 document.getElementById('deal').addEventListener('click', firstDeal)
 document.getElementById('hit').addEventListener('click', playerHit)
 document.getElementById('stay').addEventListener('click', playerStay)
 document.getElementById('bet-1').addEventListener('click', bet1)
 document.getElementById('bet-5').addEventListener('click', bet5)
-resetBtn.addEventListener('click', nextHand)
+newHandBtn.addEventListener('click', newHand)
+resetBtn.addEventListener('click', init)
 
 
 /*----- functions -----*/
@@ -55,11 +57,19 @@ function renderMessage() {
 
 
 function bet5() {
-
+  pot += 10;
+  wallet -=5; 
+  potEl.innerText = '$' + pot
+  walletEl.innerText = '$' + wallet
+  render()
 }
 
 function bet1() {
-
+  pot += 2;
+  wallet -=1;
+  potEl.innerText = '$' + pot
+  walletEl.innerText = '$' + wallet
+  render()
 }
 
 function firstDeal() {
@@ -68,10 +78,10 @@ function firstDeal() {
     playerHand.push(shuffledDeck.pop())
   }
   if (scoreHand(playerHand) === 21 && scoreHand(dealerHand) === 21) {
-    winner = true
+    winner = 't'
     outcomeEl.innerText = "Bummer! It's a Push"
   } else if (scoreHand(playerHand) === 21) {
-    winner = true
+    winner = 'p'
     outcomeEl.innerText = "Blackjack!!! Player Wins"
   }
   render();
@@ -80,13 +90,22 @@ function firstDeal() {
 
 function renderControls() {
   if(winner) {
-    resetBtn.style.visibility = 'visible'
+    newHandBtn.style.visibility = 'visible'
+  }
+  if(wallet === 0) {
+    resetBtn.style.visibility = "visible"
   }
 }
-function nextHand() {
-  playerHand = []
-  dealerHand = []
-  renderNewShuffledDeck()
+function newHand() {
+  handleWallet();
+  playerHand = [];
+  dealerHand = [];
+  winner = null;
+  renderNewShuffledDeck();
+  outcomeEl.innerText = "PLACE YOUR BET"
+  potEl.innerText = 'Pot'
+  newHandBtn.style.visibility = 'hidden'
+  render()
 }
 
 function scoreHand(hand) {
@@ -109,26 +128,37 @@ function playerStay() {
 function playerHit() {
   playerHand.push(shuffledDeck.pop())
   if(scoreHand(playerHand) > 21) {
-    winner = true
     outcomeEl.innerText = "Player Busts"
+    newHandBtn.style.visibility = 'visible'
   }
   render()
 }
 
+function handleWallet() {
+  if(winner === 'p') {
+    wallet += pot;
+    walletEl.innerText = "$" + wallet
+  }
+  pot = 0
+  potEl.innerText = "Pot"
+  return wallet
+}
+
 function getWinner() {
   if (scoreHand(playerHand) === scoreHand(dealerHand)) {
-    winner = true
+    winner = 't'
     outcomeEl.innerText = "It's a Push"
   } else if (scoreHand(playerHand) < 21 && scoreHand(dealerHand) > 21) {
-    winner = true
+    winner = 'p'
     outcomeEl.innerText = `Dealer Busts with ${scoreHand(dealerHand)}`
   } else if (scoreHand(playerHand) > scoreHand(dealerHand)) {
-    winner = true
+    winner = 'p'
     outcomeEl.innerText = `Player wins with ${scoreHand(playerHand)}`
   } else if (scoreHand(playerHand) < scoreHand(dealerHand)) {
-    winner = true
+    winner = 'd'
     outcomeEl.innerText = `Dealer Wins with ${scoreHand(dealerHand)}`
   }
+  handleWallet()
 }
 
 function renderHand(hand, container) {

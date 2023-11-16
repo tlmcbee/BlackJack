@@ -35,6 +35,8 @@ header>button {
     visibility: hidden;
 }
 
+
+
 main {
     height: 70vh;
     width: 70vw;
@@ -124,7 +126,7 @@ footer>div{
     border: 0.5vmin solid #1A7803;
 }
 
-footer>button:hover {
+button:hover {
     background-color: black;
     color: white;
     border: 0.1vmin solid black;
