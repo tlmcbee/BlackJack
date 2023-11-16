@@ -34,8 +34,6 @@ header>button {
     border-radius: 2vmin;
 }
 
-
-
 main {
     height: 70vh;
     width: 70vw;
@@ -57,11 +55,6 @@ main>div {
 }
 
 #outcome {
-    font-size: 20px;
-    visibility: hidden;
-}
-
-#result {
     font-size: 20px;
     visibility: hidden;
 }
@@ -91,7 +84,6 @@ footer>div{
     font-size: 3vmin;
     border: 0.5vmin solid #1A7803;
 }
-
 
 #hit {
     background-color: #1A7803;
