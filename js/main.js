@@ -20,12 +20,18 @@ const dealerCards = document.getElementById('dealer-cards')
 const outcomeEl = document.getElementById('outcome')
 const resetBtn = document.getElementById('reset')
 const newHandBtn = document.getElementById('new-hand')
+const dealBtn = document.getElementById('deal')
+const hitBtn = document.getElementById('hit')
+const stayBtn = document.getElementById('stay')
+const bet1Btn = document.getElementById("bet-1")
+const bet5Btn = document.getElementById('bet-5')
+
 /*----- event listeners -----*/
-document.getElementById('deal').addEventListener('click', firstDeal)
-document.getElementById('hit').addEventListener('click', playerHit)
-document.getElementById('stay').addEventListener('click', playerStay)
-document.getElementById('bet-1').addEventListener('click', bet1)
-document.getElementById('bet-5').addEventListener('click', bet5)
+dealBtn.addEventListener('click', firstDeal)
+hitBtn.addEventListener('click', playerHit)
+stayBtn.addEventListener('click', playerStay)
+bet1Btn.addEventListener('click', bet1)
+bet5Btn.addEventListener('click', bet5)
 newHandBtn.addEventListener('click', newHand)
 resetBtn.addEventListener('click', init)
 
@@ -41,6 +47,7 @@ function init() {
   pot = null;
   winner = null;
   renderNewShuffledDeck();
+  resetBtn.style.visibility = "hidden"
   render();
 }
 
@@ -77,6 +84,10 @@ function firstDeal() {
     dealerHand.push(shuffledDeck.pop())
     playerHand.push(shuffledDeck.pop())
   }
+  dealBtn.disabled = true;
+  bet1Btn.disabled = true;
+  bet5Btn.disabled = true;
+  hitBtn.disabled = false;
   if (scoreHand(playerHand) === 21 && scoreHand(dealerHand) === 21) {
     winner = 't'
     outcomeEl.innerText = "Bummer! It's a Push"
@@ -89,12 +100,16 @@ function firstDeal() {
 
 
 function renderControls() {
-  if(winner) {
-    newHandBtn.style.visibility = 'visible'
-  }
+  newHandBtn.style.visibility = winner ? 'visible' : 'hidden'
   if(wallet === 0) {
-    resetBtn.style.visibility = "visible"
-  }
+  resetBtn.style.visibility = 'visible';
+  bet1Btn.disabled = true;
+  bet5Btn.disabled = true;
+ } else {
+  resetBtn.style.visibility = 'hidden'
+ }
+
+
 }
 function newHand() {
   handleWallet();
@@ -102,6 +117,9 @@ function newHand() {
   dealerHand = [];
   winner = null;
   renderNewShuffledDeck();
+  dealBtn.disabled = false;
+  bet1Btn.disabled = false;
+  bet5Btn.disabled = false;
   outcomeEl.innerText = "PLACE YOUR BET"
   potEl.innerText = 'Pot'
   newHandBtn.style.visibility = 'hidden'
@@ -117,6 +135,7 @@ function scoreHand(hand) {
 }
 
 function playerStay() {
+  hitBtn.disabled = true;
   while(scoreHand(dealerHand) < 17) {
     dealerHand.push(shuffledDeck.pop());
     if(scoreHand(dealerHand) >= 21) return scoreHand(dealerHand);
@@ -128,6 +147,7 @@ function playerStay() {
 function playerHit() {
   playerHand.push(shuffledDeck.pop())
   if(scoreHand(playerHand) > 21) {
+    winner = 'd'
     outcomeEl.innerText = "Player Busts"
     newHandBtn.style.visibility = 'visible'
   }

@@ -27,12 +27,11 @@ header {
 }
 
 header>button {
-    background-color: white;
-    color: darkgray;
+    background-color: #A31717;
+    color: black;
     font-size: 2vmin;
     border: 0.1vmin solid black;
     border-radius: 2vmin;
-    visibility: hidden;
 }
 
 
@@ -45,13 +44,13 @@ main {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    margin: 5px;
+    margin: 10px;
 }
 
 main>div {
     background-color: #104E00;
     color: black;
-    height: 70vmin;
+    height: 50vmin;
     width: 40vmin;
     border: solid 5px black;
     border-radius: 2vmin;
