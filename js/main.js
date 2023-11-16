@@ -90,6 +90,7 @@ function firstDeal() {
   bet1Btn.disabled = true;
   bet5Btn.disabled = true;
   hitBtn.disabled = false;
+  stayBtn.disabled = false;
   if (scoreHand(playerHand) === 21 && scoreHand(dealerHand) === 21) {
     winner = 't'
     outcomeEl.innerText = "Bummer! It's a Push"
@@ -181,6 +182,7 @@ function getWinner() {
     winner = 'd'
     outcomeEl.innerText = `Dealer Wins with ${scoreHand(dealerHand)}`
   }
+  stayBtn.disabled = true;
   handleWallet()
 }
 
