@@ -48,6 +48,8 @@ function init() {
   winner = null;
   renderNewShuffledDeck();
   resetBtn.style.visibility = "hidden"
+  outcomeEl.innerText = "PLACE YOUR BET"
+  potEl.innerText = 'Pot'
   render();
 }
 
@@ -158,10 +160,11 @@ function handleWallet() {
   if(winner === 'p') {
     wallet += pot;
     walletEl.innerText = "$" + wallet
+  } else if (winner === 't') {
+    wallet = wallet + (pot/2)
   }
   pot = 0
-  potEl.innerText = "Pot"
-  return wallet
+  potEl.innerText = "Pot" 
 }
 
 function getWinner() {
