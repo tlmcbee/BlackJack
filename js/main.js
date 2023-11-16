@@ -11,6 +11,7 @@ let playerHand;
 let dealerHand;
 let winner;
 
+
 /*----- cached elements  -----*/
 const walletEl = document.getElementById('wallet')
 const potEl = document.getElementById('pot')
@@ -33,6 +34,7 @@ bet1Btn.addEventListener('click', bet1)
 bet5Btn.addEventListener('click', bet5)
 newHandBtn.addEventListener('click', newHand)
 resetBtn.addEventListener('click', init)
+
 
 /*----- functions -----*/
 init();
@@ -61,6 +63,7 @@ function render() {
 function renderMessage() {
   outcomeEl.style.visibility = "visible"
 }
+
 
 function bet5() {
   pot += 10;
@@ -97,6 +100,7 @@ function firstDeal() {
   render();
 }
 
+
 function renderControls() {
   newHandBtn.style.visibility = winner ? 'visible' : 'hidden'
   if(wallet === 0) {
@@ -106,6 +110,7 @@ function renderControls() {
  } else {
   resetBtn.style.visibility = 'hidden'
  }
+
 
 }
 function newHand() {
@@ -185,7 +190,7 @@ function renderHand(hand, container) {
   hand.forEach(function(card) {
     cardsHtml += `<div class="card ${card.face}"></div>`;
   });
-HTML = cardsHtml;
+    container.innerHTML = cardsHtml;
 }
 
 function renderNewShuffledDeck() {
