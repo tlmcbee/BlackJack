@@ -16,6 +16,7 @@ This game was created using a combination of JavaScript, HTMl and CSS
 The card images were provided from a CSS resource file within this course and came with specialized CSS to render the images.
 
 ### Let's play Black Jack
+https://tlmcbee.github.io/BlackJack/
 
 Upon loading the page your wallet will have $20. Bet any amount you would wish then click deal. You can hit and stay if you like your hand then the dealer will play and a winner will be determined. From there click "New Deal" the next hand will be played. When your all out of money click "Reset" to start all over.
 
