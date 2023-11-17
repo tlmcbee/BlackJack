@@ -172,7 +172,7 @@ function getWinner() {
   if (scoreHand(playerHand) === scoreHand(dealerHand)) {
     winner = 't'
     outcomeEl.innerText = "It's a Push"
-  } else if (scoreHand(playerHand) < 21 && scoreHand(dealerHand) > 21) {
+  } else if (scoreHand(playerHand) <= 21 && scoreHand(dealerHand) > 21) {
     winner = 'p'
     outcomeEl.innerText = `Dealer Busts with ${scoreHand(dealerHand)}`
   } else if (scoreHand(playerHand) > scoreHand(dealerHand)) {
